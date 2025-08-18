@@ -9,6 +9,7 @@ print(df.head())
 
 #Build clothes_text
 clothes_text = ""
+# Converting the each rows into string
 for _, row in df.iterrows():
     clothes_text += (
         f"Item: {row['Clothes']}, "
