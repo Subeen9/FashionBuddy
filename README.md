@@ -10,6 +10,7 @@ A simple fashion assistant built with Python, Gradio, Ollama, and Pandas.
  Python Gradio for UI
 
  Ollama[phi3:mini model] Local llm for responses.
+ Ollama [all-minilm:latest] for emebedding generation
 
  Pandas for data handeling.
 
@@ -23,6 +24,9 @@ A simple fashion assistant built with Python, Gradio, Ollama, and Pandas.
  ```bash
  ollama pull phi3:mini
  ```
+ ```bash
+ ollama pull all-minilm:latest
+```
 
  ## Getting Started
 
@@ -40,7 +44,10 @@ A simple fashion assistant built with Python, Gradio, Ollama, and Pandas.
  ```bash
  python query.py
 ```
-The python module will convert the excel data into string.
+The python module will geenrate the embeddings of the excel data and caches all row.
+On Next run, the data is being pulled from cache. If there is change in data, the hash
+is changed so it regenerates the embeddings and updates the cache. Next Plan is to store in
+FAISS for vector search later.
 Gradio will run on  http://127.0.0.1:7860
 Ask the qns in the browser and it will answer your question.
 
@@ -57,7 +64,7 @@ Ask the qns in the browser and it will answer your question.
 - The code assumes your Excel file has specific column names. If your data uses different column names, update query.py accordingly to avoid errors.
 
 ## Sample Excel Data Format
-| Clothes  | Color | Category   | Outdoor | Size | Tshirt | PANT | Hoodie | Business | Ocassion   |
+| Clothes  | Color | Category   | Outdoor | Size | Tshirt | PANT | Hoodie | Business | Occassion   |
 | -------- | ----- | ---------- | ------- | ---- | ------ | ---- | ------ | -------- | ---------- |
 | Polo Tee | Blue  | Casual     | Yes     | M    | Yes    | No   | No     | No       | Party      |
 | Jeans    | Black | Bottomwear | Yes     | 32   | No     | Yes  | No     | No       | Daily Wear |
